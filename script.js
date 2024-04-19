@@ -29,8 +29,6 @@ scene.add(camera)
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
-// ...
-
 // Renderer
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
