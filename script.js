@@ -22,7 +22,6 @@ camera.position.z = 3
 scene.add(camera)
 
 
-
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
