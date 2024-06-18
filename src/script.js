@@ -43,18 +43,23 @@ const clock = new THREE.Clock()
 
 // let time = Date.now()
 
+gsap.to(mesh.position, { duration: 1, delay: 1, x: 2 })
+gsap.to(mesh.position, { duration: 1, delay: 2, x: 0 })
+
 const tick = () => {
 
     // Time
-    const elapsedTime = clock.getElapsedTime()
+    // const elapsedTime = clock.getElapsedTime()
+
     // const currTime = Date.now()
     // const delta = currTime - time
     // time = currTime
 
     // Update objects
     // mesh.rotation.y = elapsedTime 
-    mesh.position.x = Math.cos(elapsedTime)
-    mesh.position.y = Math.sin(elapsedTime)
+
+    // mesh.position.x = Math.cos(elapsedTime)
+    // mesh.position.y = Math.sin(elapsedTime)
 
     // Render
     renderer.render(scene, camera)
