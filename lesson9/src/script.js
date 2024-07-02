@@ -6,7 +6,11 @@ import GUI from 'lil-gui'
 /**
  * Debug
  */
-const gui = new GUI()
+const gui = new GUI({
+    width: 200,
+    title: 'Debug UI'
+})
+const settingsFolder = gui.addFolder('Settings')
 const debugObject = {}
 debugObject.color = '#a778d8'
 
@@ -23,23 +27,41 @@ const scene = new THREE.Scene()
  * Object
  */
 const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2)
-const material = new THREE.MeshBasicMaterial({ color: debugObject.color })
+const material = new THREE.MeshBasicMaterial({ color: debugObject.color, wireframe: true})
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
-gui.add(mesh.position, 'y')
+settingsFolder.add(mesh.position, 'y')
     .min(- 3)
     .max(3)
     .step(0.01)
     .name('elevation')
 
-gui.add(mesh, 'visible')    
+settingsFolder.add(mesh, 'visible')    
 
-gui.add(material, 'wireframe')
+settingsFolder.add(material, 'wireframe')
 
-gui.addColor(debugObject, 'color')
+settingsFolder.addColor(debugObject, 'color')
    .onChange(() => {
         material.color.set(debugObject.color)
+    })
+
+debugObject.spin = () => {
+    gsap.to(mesh.rotation, { duration: 1, y: mesh.rotation.y + Math.PI * 2 })
+}
+settingsFolder.add(debugObject, 'spin')
+
+debugObject.subdivision = 2
+gui.add(debugObject, 'subdivision')
+   .min(1)
+   .max(20)
+   .step(1)
+   .onFinishChange(() => {
+        mesh.geometry.dispose()
+        mesh.geometry = new THREE.BoxGeometry(
+            1, 1, 1,
+            debugObject.subdivision, debugObject.subdivision, debugObject.subdivision
+        )
     })
 
 /**
