@@ -77,8 +77,31 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace
 // gradientTexture.generateMipmaps = false
 // material.gradientMap = gradientTexture
 
-//  MeshStandardMaterial
-const material = new THREE.MeshStandardMaterial()
+// //  MeshStandardMaterial
+// const material = new THREE.MeshStandardMaterial()
+
+// material.side = THREE.DoubleSide
+// material.metalness = 1
+// material.roughness = 1
+// gui.add(material, 'metalness').min(0).max(1).step(0.0001)
+// gui.add(material, 'roughness').min(0).max(1).step(0.0001)
+
+// material.map = doorColorTexture
+// material.aoMap = doorAmbientOcclusionTexture
+// material.aoMapIntensity = 1
+// material.displacementMap = doorHeightTexture
+// material.displacementScale = 0.05
+
+// material.metalnessMap = doorMetalnessTexture
+// material.roughnessMap = doorRoughnessTexture
+// material.normalMap = doorNormalTexture
+// // material.normalScale.set(0.5, 0.5)
+
+// material.transparent = true
+// material.alphaMap = doorAlphaTexture
+
+//  MeshPhysicalMaterial
+const material = new THREE.MeshPhysicalMaterial()
 
 material.side = THREE.DoubleSide
 material.metalness = 1
@@ -90,10 +113,21 @@ material.map = doorColorTexture
 material.aoMap = doorAmbientOcclusionTexture
 material.aoMapIntensity = 1
 material.displacementMap = doorHeightTexture
-material.displacementScale = 0.1
+material.displacementScale = 0.05
 
 material.metalnessMap = doorMetalnessTexture
 material.roughnessMap = doorRoughnessTexture
+material.normalMap = doorNormalTexture
+
+material.transparent = true
+material.alphaMap = doorAlphaTexture
+
+// Clearcoat
+material.clearcoat = 1
+material.clearcoatRoughness = 0
+
+gui.add(material, 'clearcoat').min(0).max(1).step(0.0001)
+gui.add(material, 'clearcoatRoughness').min(0).max(1).step(0.0001)
 
 
 
